@@ -9,9 +9,18 @@
 #   - output/
 #   - reports/
 
+mkdir -p data output reports
+echo "Created directories: data/, output/, reports/"
+
 # TODO: Generate the dataset
 #       Run: python3 generate_data.py
 #       This creates data/clinical_trial_raw.csv with 10,000 patients
 
+python3 generate_data.py
+echo "Generated dataset: data/clinical_trial_raw.csv"
+
 # TODO: Save the directory structure to reports/directory_structure.txt
 #       Hint: Use 'ls -la' or 'tree' command
+
+ls -la > reports/directory_structure.txt
+echo "Saved directory structure to reports/directory_structure.txt"
