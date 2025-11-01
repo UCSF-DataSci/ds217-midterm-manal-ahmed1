@@ -48,7 +48,6 @@ data/             # Input data (provided)
 q2_config.txt     # Configuration file (Q2 data generation parameters)
 ```
 
-
 ## Variables:
 
 ### Demographics:

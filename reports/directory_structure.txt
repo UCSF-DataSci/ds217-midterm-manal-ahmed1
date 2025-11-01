@@ -1,0 +1,24 @@
+total 224
+drwxr-xr-x@ 23 admin  staff    736 Oct 22 14:09 .
+drwxr-xr-x@  9 admin  staff    288 Oct 22 14:05 ..
+drwxr-xr-x@ 13 admin  staff    416 Oct 22 14:06 .git
+drwxr-xr-x@  4 admin  staff    128 Oct 22 14:05 .github
+-rw-r--r--@  1 admin  staff     13 Oct 22 14:17 .gitignore
+drwxr-xr-x@  6 admin  staff    192 Oct 22 14:09 .venv
+-rw-r--r--@  1 admin  staff  14662 Oct 22 14:05 GRADING_SPEC.md
+-rw-r--r--@  1 admin  staff  12594 Oct 22 14:13 README.md
+drwxr-xr-x@  3 admin  staff     96 Oct 22 14:05 __pycache__
+drwxr-xr-x@  3 admin  staff     96 Oct 22 14:17 data
+-rwxr-xr-x@  1 admin  staff  13266 Oct 22 14:05 generate_data.py
+drwxr-xr-x@  2 admin  staff     64 Oct 22 14:07 output
+-rwxr-xr-x@  1 admin  staff    870 Oct 22 14:06 q1_setup_project.sh
+-rw-r--r--@  1 admin  staff     58 Oct 22 14:05 q2_config.txt
+-rwxr-xr-x@  1 admin  staff   2901 Oct 22 14:05 q2_process_metadata.py
+-rw-r--r--@  1 admin  staff   5849 Oct 22 14:05 q3_data_utils.py
+-rw-r--r--@  1 admin  staff   7309 Oct 22 14:05 q4_exploration.ipynb
+-rw-r--r--@  1 admin  staff   4824 Oct 22 14:05 q5_missing_data.ipynb
+-rw-r--r--@  1 admin  staff   6194 Oct 22 14:05 q6_transformation.ipynb
+-rw-r--r--@  1 admin  staff   4995 Oct 22 14:05 q7_aggregation.ipynb
+-rwxr-xr-x@  1 admin  staff    908 Oct 22 14:05 q8_run_pipeline.sh
+drwxr-xr-x@  3 admin  staff     96 Oct 22 14:07 reports
+-rw-r--r--@  1 admin  staff     91 Oct 22 14:05 requirements.txt

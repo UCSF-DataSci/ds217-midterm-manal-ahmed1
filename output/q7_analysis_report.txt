@@ -1,0 +1,97 @@
+Final Report
+========================
+1. Summary by Site:
+Mean of age, bmi and systolic blood pressure by site:
+       site    age   bmi  systolic_bp  diastolic_bp
+   SITE A    23.61 25.87       116.63         73.99
+   SITE B    59.67 26.82       118.06         73.39
+   SITE C    60.25 25.69       115.94         72.96
+   SITE D    77.85 25.89       119.51         74.97
+   SITE E    12.26 25.50       113.07         71.90
+  Site  A    80.33 25.45       118.55         74.61
+   Site A    49.84 26.26       119.68         75.73
+   Site B    56.32 26.52       117.04         73.49
+   Site C    27.83 26.45       116.42         73.94
+   Site D   -25.31 26.39       117.41         74.06
+   Site E    75.50 27.10       119.60         72.03
+   Site_D     9.87 25.53       118.83         74.72
+   site a    67.27 25.61       116.70         72.01
+   site b    57.02 25.62       117.39         73.26
+   site c    80.93 26.36       119.71         74.59
+   site d    81.00 27.18       121.33         76.03
+   site e    83.19 26.33       120.00         73.46
+     SITE A  60.91 26.06       117.09         73.44
+     SITE B  63.63 25.67       117.03         73.19
+     SITE C  55.46 25.69       117.64         73.34
+     SITE D  55.51 25.86       118.49         74.01
+     SITE E  51.87 25.14       117.44         73.81
+    Site  A  53.77 25.73       118.63         74.30
+     Site A  61.44 25.98       117.09         73.16
+     Site B  56.91 25.57       117.12         72.94
+     Site C  60.89 25.85       118.51         73.92
+     Site D  67.47 25.64       118.02         73.30
+     Site E  56.43 25.58       117.07         73.87
+     Site_D  77.99 25.17       117.49         73.22
+     site a  49.80 25.77       116.34         73.06
+     site b  68.41 25.64       117.09         73.77
+     site c  56.83 25.70       117.97         73.69
+     site d  61.88 25.29       117.21         73.49
+     site e  61.86 25.38       117.91         74.05
+
+2. Intervention Group Comparison:
+Mean outcome cvd rate by intervention group:
+intervention_group  mean_outcome_cvd
+         CONTROL            0.357143
+          Contrl            0.342466
+         Control            0.326316
+     TREATMENT A            0.307692
+     TREATMENT B            0.385542
+      Treatmen A            0.316667
+    Treatment  B            0.312500
+     Treatment A            0.272727
+     Treatment B            0.336538
+      TreatmentA            0.257576
+         control            0.337349
+     treatment a            0.388060
+     treatment b            0.366667
+           CONTROL          0.331469
+            Contrl          0.344140
+           Control          0.320905
+       TREATMENT A          0.325175
+       TREATMENT B          0.348226
+        Treatmen A          0.319257
+      Treatment  B          0.310526
+       Treatment A          0.344262
+       Treatment B          0.335616
+        TreatmentA          0.300787
+           control          0.347411
+       treatment a          0.314626
+       treatment b          0.332000
+Mean adherence_pct by intervention group:
+intervention_group  mean_adherence_pct
+         CONTROL             58.705882
+          Contrl             61.263158
+         Control             61.361446
+     TREATMENT A             57.296296
+     TREATMENT B             62.171053
+      Treatmen A             60.566038
+    Treatment  B             59.740741
+     Treatment A             61.358491
+     Treatment B             58.872093
+      TreatmentA             58.528302
+         control             63.955882
+     treatment a             60.169811
+     treatment b             65.702703
+           CONTROL           60.623140
+            Contrl           59.854015
+           Control           61.156250
+       TREATMENT A           60.522634
+       TREATMENT B           60.360656
+        Treatmen A           59.771203
+      Treatment  B           60.931715
+       Treatment A           61.347826
+       Treatment B           61.385484
+        TreatmentA           59.295749
+           control           60.603200
+       treatment a           60.474104
+       treatment b           61.120444
