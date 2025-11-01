@@ -131,7 +131,9 @@ stats['sum'] = sum
     else:
         stats['median'] = (sorted_data[mid] + sorted_data[mid-1]) / 2
     return stats
-    pass
+
+
+pass
 
 
 if __name__ == '__main__':
@@ -161,5 +163,3 @@ if __name__ == '__main__':
     else:
         print("Invalid configuration:", validation) 
         pass
-
-
