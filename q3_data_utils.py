@@ -176,17 +176,24 @@ def transform_types(df: pd.DataFrame, type_map: dict) -> pd.DataFrame:
         >>> df_typed = transform_types(df, type_map)
     """
     df_transform = df.copy()
-    for col, typ in type_map.items():
-        if typ == "datetime":
-            df_transform[col] = pd.to_datetime(df_transform[col])
-        elif typ == "numeric":
-            df_transform[col] = pd.to_numeric(df_transform[col])
-        elif typ == "category":
+    for col, target in type_map.items():
+        if target == "datetime":
+            # Accept ISO, MM/DD/YYYY, etc.
+            df_transform[col] = pd.to_datetime(
+                df_transform[col],
+                format="mixed",     # pandas >= 2.0
+                errors="coerce"     # invalid -> NaT instead of raising
+            )
+        elif target == "int":
+            df_transform[col] = (
+                pd.to_numeric(df_transform[col], errors="coerce").astype("Int64")
+            )
+        elif target == "float":
+            df_transform[col] = pd.to_numeric(df_transform[col], errors="coerce")
+        elif target == "category":
             df_transform[col] = df_transform[col].astype("category")
-        elif typ == "string":
+        elif target == "string":
             df_transform[col] = df_transform[col].astype("string")
-        else:
-            raise ValueError(f"Unsupported type: {typ}")
     return df_transform
 
 def create_bins(df: pd.DataFrame, column: str, bins: list,
