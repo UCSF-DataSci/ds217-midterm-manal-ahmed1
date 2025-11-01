@@ -1,3 +1,4 @@
+#!/bin/bash
 # TODO: Add shebang line: #!/bin/bash
 # Assignment 5, Question 1: Project Setup Script
 # This script creates the directory structure for the clinical trial analysis project
@@ -24,3 +25,5 @@ echo "Generated dataset: data/clinical_trial_raw.csv"
 
 ls -la > reports/directory_structure.txt
 echo "Saved directory structure to reports/directory_structure.txt"
+
+chmod +x q1_setup.sh
