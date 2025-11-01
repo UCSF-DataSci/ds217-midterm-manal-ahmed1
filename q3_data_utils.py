@@ -23,7 +23,9 @@ def load_data(filepath: str) -> pd.DataFrame:
         >>> df.shape
         (10000, 18)
     """
-    pass
+    df = pd.read_csv(filepath)
+    return df
+    
 
 
 def clean_data(df: pd.DataFrame, remove_duplicates: bool = True,
@@ -42,8 +44,10 @@ def clean_data(df: pd.DataFrame, remove_duplicates: bool = True,
     Example:
         >>> df_clean = clean_data(df, sentinel_value=-999)
     """
-    pass
-
+    df.drop_duplicates(inplace=True)
+    df.replace(sentinel_value, np.nan,inplace=True)
+    return df
+    
 
 def detect_missing(df: pd.DataFrame) -> pd.Series:
     """
@@ -60,8 +64,9 @@ def detect_missing(df: pd.DataFrame) -> pd.Series:
         >>> missing['age']
         15
     """
-    pass
-
+    count = df.isnull().sum()
+    return count
+    
 
 def fill_missing(df: pd.DataFrame, column: str, strategy: str = 'mean') -> pd.DataFrame:
     """
@@ -78,7 +83,17 @@ def fill_missing(df: pd.DataFrame, column: str, strategy: str = 'mean') -> pd.Da
     Example:
         >>> df_filled = fill_missing(df, 'age', strategy='median')
     """
-    pass
+    df_filled = df.copy()
+    if strategy == "median":
+        df_filled[column] = df[column].fillna(df[column].median())
+    elif strategy == "mean":
+        df_filled[column] = df[column].fillna(df[column].mean())
+    elif strategy == "ffill":
+        df_filled[column] = df[column].fillna(method='ffill')
+    else:
+        df_filled[column] = df[column]
+    return df_filled
+    
 
 
 def filter_data(df: pd.DataFrame, filters: list) -> pd.DataFrame:
@@ -110,8 +125,34 @@ def filter_data(df: pd.DataFrame, filters: list) -> pd.DataFrame:
         >>> # Range filter example
         >>> filters = [{'column': 'age', 'condition': 'in_range', 'value': [18, 65]}]
         >>> df_filtered = filter_data(df, filters)
-    """
-    pass
+        """
+        
+    df_filtered = df.copy()
+    for f in filters:
+        col = f["column"]
+        cond = f["condition"]
+        val = f["value"]
+
+        if cond == "equals":
+            df_filtered = df_filtered[df_filtered[col] == val]
+
+        elif cond == "greater_than":
+            df_filtered = df_filtered[df_filtered[col] > val]
+
+        elif cond == "less_than":
+            df_filtered = df_filtered[df_filtered[col] < val]
+
+        elif cond == "in_range":
+            low, high = val
+            df_filtered = df_filtered[
+                (df_filtered[col] >= low) & (df_filtered[col] <= high)
+            ]
+
+        elif cond == "in_list":
+            df_filtered = df_filtered[df_filtered[col].isin(val)]
+
+    return df_filtered
+ 
 
 
 def transform_types(df: pd.DataFrame, type_map: dict) -> pd.DataFrame:
@@ -121,7 +162,7 @@ def transform_types(df: pd.DataFrame, type_map: dict) -> pd.DataFrame:
     Args:
         df: Input DataFrame
         type_map: Dict mapping column names to target types
-                  Supported types: 'datetime', 'numeric', 'category', 'string'
+            Supported types: 'datetime', 'numeric', 'category', 'string'
 
     Returns:
         pd.DataFrame: DataFrame with converted types
@@ -134,8 +175,19 @@ def transform_types(df: pd.DataFrame, type_map: dict) -> pd.DataFrame:
         ... }
         >>> df_typed = transform_types(df, type_map)
     """
-    pass
-
+    df_transform = df.copy()
+    for col, typ in type_map.items():
+        if typ == "datetime":
+            df_transform[col] = pd.to_datetime(df_transform[col])
+        elif typ == "numeric":
+            df_transform[col] = pd.to_numeric(df_transform[col])
+        elif typ == "category":
+            df_transform[col] = df_transform[col].astype("category")
+        elif typ == "string":
+            df_transform[col] = df_transform[col].astype("string")
+        else:
+            raise ValueError(f"Unsupported type: {typ}")
+    return df_transform
 
 def create_bins(df: pd.DataFrame, column: str, bins: list,
                 labels: list, new_column: str = None) -> pd.DataFrame:
@@ -160,7 +212,10 @@ def create_bins(df: pd.DataFrame, column: str, bins: list,
         ...     labels=['<18', '18-34', '35-49', '50-64', '65+']
         ... )
     """
-    pass
+    df_bins = df.copy()
+    df_bins[new_column] = pd.cut(df_bins[column], labels=labels, bins=bins)
+    return df_bins
+    
 
 
 def summarize_by_group(df: pd.DataFrame, group_col: str,
@@ -188,12 +243,19 @@ def summarize_by_group(df: pd.DataFrame, group_col: str,
         ...     {'age': ['mean', 'std'], 'bmi': 'mean'}
         ... )
     """
-    pass
+
+    if agg_dict == None:
+        group_data = df.groupby(group_col).describe()
+    else:
+        group_data = df.groupby(group_col).agg(agg_dict)
+    return group_data 
+    
 
 
 
 
 if __name__ == '__main__':
+    df=load_data('data/clinical_trial_raw.csv')
     # Optional: Test your utilities here
     print("Data utilities loaded successfully!")
     print("Available functions:")
@@ -207,7 +269,14 @@ if __name__ == '__main__':
     print("  - summarize_by_group()")
     
     # TODO: Add simple test example here
-    # Example:
-    # test_df = pd.DataFrame({'age': [25, 30, 35], 'bmi': [22, 25, 28]})
-    # print("Test DataFrame created:", test_df.shape)
-    # print("Test detect_missing:", detect_missing(test_df))
+
+    test_df = pd.DataFrame({'age': [25, 30, 35, None], 'bmi': [22, 25, 28, -999]})
+    print("Test DataFrame created:", test_df.shape)
+    print("Test detect_missing:", detect_missing(test_df))
+    print("Test clean_data:", clean_data(test_df, sentinel_value=-999))
+    print("Test fill_missing (age, mean):", fill_missing(test_df, 'age', strategy='mean'))
+    filters = [{'column': 'site', 'condition': 'equals', 'value': 'Site A'}]
+    df_filtered = filter_data(df, filters)
+    print("Filtered DataFrame shape:", df_filtered.shape)
+    print(df.shape)
+                                                                
